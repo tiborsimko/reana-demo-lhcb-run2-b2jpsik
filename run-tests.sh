@@ -9,6 +9,10 @@
 set -o errexit
 set -o nounset
 
+format_shfmt() {
+    shfmt -d .
+}
+
 lint_commitlint() {
     from=${2:-master}
     to=${3:-HEAD}
@@ -35,7 +39,7 @@ lint_commitlint() {
         # (iii) check absence of merge commits in feature branches
         if [ "$commit_number_of_parents" -gt 1 ]; then
             if echo "$commit_title" | grep -qE "^chore\(.*\): merge "; then
-                break  # skip checking maint-to-master merge commits
+                break # skip checking maint-to-master merge commits
             else
                 echo "✖   Merge commits are not allowed in feature branches: $commit_title"
                 found=1
@@ -60,6 +64,7 @@ lint_yamllint() {
 }
 
 all() {
+    format_shfmt
     lint_commitlint
     lint_jsonlint
     lint_shellcheck
@@ -70,6 +75,7 @@ help() {
     echo "Usage: $0 [options]"
     echo "Options:"
     echo "  --all              Perform all checks [default]"
+    echo "  --format-shfmt     Check formatting of shell scripts"
     echo "  --help             Display this help message"
     echo "  --lint-commitlint  Check linting of commit messages"
     echo "  --lint-jsonlint    Check linting of JSON files"
@@ -86,6 +92,7 @@ arg="$1"
 case $arg in
 --all) all ;;
 --help) help ;;
+--format-shfmt) format_shfmt ;;
 --lint-commitlint) lint_commitlint "$@" ;;
 --lint-jsonlint) lint_jsonlint ;;
 --lint-shellcheck) lint_shellcheck ;;
