@@ -25,14 +25,19 @@ cloud and run the analysis to obtain (5) output results.
 
 ### 1. Input data
 
-The analysis uses LHCb Run 2 collision data ntuples from the CERN Open Data portal,
-accessed live via XRootD from CERN EOS public storage:
+The analysis uses LHCb Run 2 collision data ntuples from the CERN Open Data
+portal, accessed live via XRootD from CERN EOS public storage:
 
-- `root://eospublic.cern.ch//eos/opendata/lhcb/CollisionNtuples/OPENDATA.LHCB.EBYF.C7OY/outputs/real-production/00334560_00000001_1.dvntuple.root`
-- `root://eospublic.cern.ch//eos/opendata/lhcb/CollisionNtuples/OPENDATA.LHCB.EBYF.C7OY/outputs/real-production/00334560_00000002_1.dvntuple.root`
-- `root://eospublic.cern.ch//eos/opendata/lhcb/CollisionNtuples/OPENDATA.LHCB.EBYF.C7OY/outputs/real-production/00334564_00000001_1.dvntuple.root`
-- `root://eospublic.cern.ch//eos/opendata/lhcb/CollisionNtuples/OPENDATA.LHCB.EBYF.C7OY/outputs/real-production/00334565_00000001_1.dvntuple.root`
-- `root://eospublic.cern.ch//eos/opendata/lhcb/CollisionNtuples/OPENDATA.LHCB.EBYF.C7OY/outputs/real-production/00334566_00000001_1.dvntuple.root`
+-
+`root://eospublic.cern.ch//eos/opendata/lhcb/CollisionNtuples/OPENDATA.LHCB.EBYF.C7OY/outputs/real-production/00334560_00000001_1.dvntuple.root`
+-
+`root://eospublic.cern.ch//eos/opendata/lhcb/CollisionNtuples/OPENDATA.LHCB.EBYF.C7OY/outputs/real-production/00334560_00000002_1.dvntuple.root`
+-
+`root://eospublic.cern.ch//eos/opendata/lhcb/CollisionNtuples/OPENDATA.LHCB.EBYF.C7OY/outputs/real-production/00334564_00000001_1.dvntuple.root`
+-
+`root://eospublic.cern.ch//eos/opendata/lhcb/CollisionNtuples/OPENDATA.LHCB.EBYF.C7OY/outputs/real-production/00334565_00000001_1.dvntuple.root`
+-
+`root://eospublic.cern.ch//eos/opendata/lhcb/CollisionNtuples/OPENDATA.LHCB.EBYF.C7OY/outputs/real-production/00334566_00000001_1.dvntuple.root`
 
 The ntuples contain reconstructed B+/- -> J/psi K+/- decay candidates from the
 `Btree/DecayTree` tree.

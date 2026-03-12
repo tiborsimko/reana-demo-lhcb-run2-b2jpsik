@@ -9,8 +9,26 @@ name: ci
 on: [push, pull_request]
 
 jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-format-shfmt:
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install reana-client
+
+      - name: Validate workflow specification file
+        run: reana-client validate | grep "Valid REANA specification" > /dev/null
+
+  format-shfmt:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
@@ -47,7 +65,7 @@ format-shfmt:
         run: |
           ./run-tests.sh --lint-commitlint ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} ${{ github.event.pull_request.number }}
 
-lint-jsonlint:
+  lint-jsonlint:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
@@ -61,6 +79,20 @@ lint-jsonlint:
           npm install jsonlint --global
           ./run-tests.sh --lint-jsonlint
 
+  lint-markdownlint:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+
+      - name: Lint Markdown files
+        run: |
+          npm install markdownlint-cli2 --global
+          ./run-tests.sh --lint-markdownlint
+
   lint-shellcheck:
     runs-on: ubuntu-24.04
     steps:
@@ -72,32 +104,11 @@ lint-jsonlint:
           sudo apt-get install shellcheck
           ./run-tests.sh --lint-shellcheck
 
-  build:
+  lint-yamllint:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: 3.12
-
-      - name: Install Python dependencies
-        run: |
-          pip install --upgrade pip
-          pip install reana-client
-
-      - name: Validate workflow specification file
-        run: reana-client validate | grep "Valid REANA specification" > /dev/null
-
-lint-yamllint:
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
