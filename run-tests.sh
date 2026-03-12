@@ -9,6 +9,10 @@
 set -o errexit
 set -o nounset
 
+format_prettier() {
+    prettier -c .
+}
+
 format_shfmt() {
     shfmt -d .
 }
@@ -68,6 +72,7 @@ lint_yamllint() {
 }
 
 all() {
+    format_prettier
     format_shfmt
     lint_commitlint
     lint_jsonlint
@@ -80,6 +85,7 @@ help() {
     echo "Usage: $0 [options]"
     echo "Options:"
     echo "  --all                Perform all checks [default]"
+    echo "  --format-prettier    Check formatting of Markdown etc files"
     echo "  --format-shfmt       Check formatting of shell scripts"
     echo "  --help               Display this help message"
     echo "  --lint-commitlint    Check linting of commit messages"
@@ -98,6 +104,7 @@ arg="$1"
 case $arg in
 --all) all ;;
 --help) help ;;
+--format-prettier) format_prettier ;;
 --format-shfmt) format_shfmt ;;
 --lint-commitlint) lint_commitlint "$@" ;;
 --lint-jsonlint) lint_jsonlint ;;

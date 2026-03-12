@@ -8,18 +8,18 @@
 ## About
 
 This [REANA](http://www.reana.io/) reproducible analysis example demonstrates
-how to work with LHCb collision ntuples produced by the [LHCb Ntupling
-Service](https://opendata-lhcb-ntupling-service.app.cern.ch/). The example
-studies the B+/- -> J/psi K+/- decay channel and demonstrates plotting of the
-B+/- meson candidate mass and J/psi candidate mass using
+how to work with LHCb collision ntuples produced by the
+[LHCb Ntupling Service](https://opendata-lhcb-ntupling-service.app.cern.ch/).
+The example studies the B+/- -> J/psi K+/- decay channel and demonstrates
+plotting of the B+/- meson candidate mass and J/psi candidate mass using
 [ROOT](https://root.cern.ch/) RDataFrame.
 
 ## Analysis structure
 
 Making a research data analysis reproducible basically means to provide
-"runnable recipes" addressing (1) where is the input data, (2) what software
-was used to analyse the data, (3) which computing environments were used to run
-the software and (4) which computational workflow steps were taken to run the
+"runnable recipes" addressing (1) where is the input data, (2) what software was
+used to analyse the data, (3) which computing environments were used to run the
+software and (4) which computational workflow steps were taken to run the
 analysis. This will permit to instantiate the analysis on the computational
 cloud and run the analysis to obtain (5) output results.
 
@@ -28,16 +28,11 @@ cloud and run the analysis to obtain (5) output results.
 The analysis uses LHCb Run 2 collision data ntuples from the CERN Open Data
 portal, accessed live via XRootD from CERN EOS public storage:
 
--
-`root://eospublic.cern.ch//eos/opendata/lhcb/CollisionNtuples/OPENDATA.LHCB.EBYF.C7OY/outputs/real-production/00334560_00000001_1.dvntuple.root`
--
-`root://eospublic.cern.ch//eos/opendata/lhcb/CollisionNtuples/OPENDATA.LHCB.EBYF.C7OY/outputs/real-production/00334560_00000002_1.dvntuple.root`
--
-`root://eospublic.cern.ch//eos/opendata/lhcb/CollisionNtuples/OPENDATA.LHCB.EBYF.C7OY/outputs/real-production/00334564_00000001_1.dvntuple.root`
--
-`root://eospublic.cern.ch//eos/opendata/lhcb/CollisionNtuples/OPENDATA.LHCB.EBYF.C7OY/outputs/real-production/00334565_00000001_1.dvntuple.root`
--
-`root://eospublic.cern.ch//eos/opendata/lhcb/CollisionNtuples/OPENDATA.LHCB.EBYF.C7OY/outputs/real-production/00334566_00000001_1.dvntuple.root`
+- `root://eospublic.cern.ch//eos/opendata/lhcb/CollisionNtuples/OPENDATA.LHCB.EBYF.C7OY/outputs/real-production/00334560_00000001_1.dvntuple.root`
+- `root://eospublic.cern.ch//eos/opendata/lhcb/CollisionNtuples/OPENDATA.LHCB.EBYF.C7OY/outputs/real-production/00334560_00000002_1.dvntuple.root`
+- `root://eospublic.cern.ch//eos/opendata/lhcb/CollisionNtuples/OPENDATA.LHCB.EBYF.C7OY/outputs/real-production/00334564_00000001_1.dvntuple.root`
+- `root://eospublic.cern.ch//eos/opendata/lhcb/CollisionNtuples/OPENDATA.LHCB.EBYF.C7OY/outputs/real-production/00334565_00000001_1.dvntuple.root`
+- `root://eospublic.cern.ch//eos/opendata/lhcb/CollisionNtuples/OPENDATA.LHCB.EBYF.C7OY/outputs/real-production/00334566_00000001_1.dvntuple.root`
 
 The ntuples contain reconstructed B+/- -> J/psi K+/- decay candidates from the
 `Btree/DecayTree` tree.
@@ -54,8 +49,8 @@ histograms:
 ### 3. Compute environment
 
 In order to be able to rerun the analysis even several years in the future, we
-need to "encapsulate the current compute environment", for example to freeze
-the ROOT version our analysis is using. We shall achieve this by preparing a
+need to "encapsulate the current compute environment", for example to freeze the
+ROOT version our analysis is using. We shall achieve this by preparing a
 [Docker](https://www.docker.com/) container image for our analysis steps.
 
 This analysis example runs within the [ROOT6](https://root.cern.ch/) analysis
@@ -87,8 +82,8 @@ The analysis workflow is simple and consists of a single step:
               STOP
 ```
 
-We are using the [Snakemake](https://snakemake.github.io) workflow
-specification (see [Snakefile](Snakefile)).
+We are using the [Snakemake](https://snakemake.github.io) workflow specification
+(see [Snakefile](Snakefile)).
 
 ### 5. Output results
 
